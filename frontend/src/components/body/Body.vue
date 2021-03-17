@@ -200,8 +200,11 @@
     border: none;
     transition: 0.2s;
 }
-.card:hover {
-    box-shadow: 0px 5px 15px silver;
+.card-img-top {
+    transition: 0.2s;
+}
+.card-img-top:hover {
+    box-shadow: 5px 10px 20px #c6c6c6;
 }
 .card-title {
     color: #409eff !important;
