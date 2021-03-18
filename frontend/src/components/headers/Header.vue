@@ -18,9 +18,18 @@
             </ul>
             <div class="form-inline my-2 my-lg-0">
               <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item">
+                <li class="nav-item" v-if="!logged">
                     <router-link to="/signin" class="nav-link">Sign in</router-link>
                 </li>
+                <li class="nav-item dropdown" v-if="logged">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <img :src="logged.avatar" height="25px"> {{ logged.username }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">Profile</a>
+                      <a class="dropdown-item" style="color:red" @click="logout">Log out</a>
+                    </div>
+                  </li>
               </ul>
             </div>
           </div>
@@ -30,9 +39,29 @@
 </template>
 
 <script>
+import AuthController from '../../controllers/auth.controller'
+
 export default {
     name: 'header',
+    data() {
+        return {
+            logged: ''
+        }
+    },
+    methods: {
+        async cookie() {
+            const userId = this.$cookies.get('userId');
+            const data = await AuthController.checkCookie(userId);
+            this.logged = data.data;
+        },
+        async logout() {
+            this.$cookies.remove('userId');
+            this.cookie();
+            this.flashInfo('Successfully logged out');
+        }
+    },
     mounted() {
+        this.cookie();
         let externalScript = document.createElement('script')
         externalScript.setAttribute('src', 'http://localhost:8080/script/navbar.js')
         document.head.appendChild(externalScript)
