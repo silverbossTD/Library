@@ -26,7 +26,7 @@
                       <img :src="logged.avatar" height="25px"> {{ logged.username }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">Profile</a>
+                      <a class="dropdown-item" href="#">Setting</a>
                       <a class="dropdown-item" style="color:red" @click="logout">Log out</a>
                     </div>
                   </li>
@@ -62,9 +62,21 @@ export default {
     },
     mounted() {
         this.cookie();
-        let externalScript = document.createElement('script')
-        externalScript.setAttribute('src', 'http://localhost:8080/script/navbar.js')
-        document.head.appendChild(externalScript)
+        let header = document.querySelector(".navbar");
+
+        window.onscroll = function() {
+            if (window.pageYOffset > 600) {
+                header.classList.add("bg-light");
+                header.classList.add("navbar-light");
+                header.classList.remove("navbar-dark");
+                document.getElementsByClassName('navbar-brand')[0].style.color = 'black';
+            } else {
+                document.getElementsByClassName('navbar-brand')[0].style.color = 'white';
+                header.classList.remove("bg-light");
+                header.classList.remove("navbar-light");
+                header.classList.add("navbar-dark");
+            }
+        }
     },
 }
 </script>

@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Preloader />
         <Section />
         <Body />
         <Footer />
@@ -8,6 +9,7 @@
 </template>
 
 <script>
+import Preloader from './Preloader';
 import Section from './sections/Section';
 import Body from './body/Body';
 import Footer from './footers/Footer';
@@ -15,6 +17,7 @@ import Footer from './footers/Footer';
 export default {
     name: 'Home',
     components: {
+        Preloader,
         Section,
         Body,
         Footer

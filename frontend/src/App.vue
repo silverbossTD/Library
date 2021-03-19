@@ -2,6 +2,7 @@
   <div>
       <Header />
       <router-view></router-view>
+      <flash-message class="myCustomClass"></flash-message>
   </div>
 </template>
 

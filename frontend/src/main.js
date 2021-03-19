@@ -7,7 +7,7 @@ import VueCookies from 'vue-cookies'
 
 import { router } from './routes'
 
-require('vue-flash-message/dist/vue-flash-message.min.css');
+import 'vue-flash-message/dist/vue-flash-message.min.css'
 
 Vue.config.productionTip = false
 
@@ -17,7 +17,7 @@ Vue.use(VueFlashMessage, {
   messageOptions: {
     timeout: 2500,
   }
-});
+})
 
 new Vue({
     router,

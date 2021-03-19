@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Preloader />
         <section class="text-center headerContainer p-5">
             <div class="container" style="padding-top: 80px">
                 <h1 style="color:white;font : normal 300 64px/1 'Josefin Sans', sans-serif;text-shadow: 5px 5px black;">Oops!</h1>
@@ -15,11 +16,13 @@
 </template>
 
 <script>
+import Preloader from './Preloader';
 import Section from './sections/Sectionv0';
 import Footer from './footers/Footer';
 export default {
     name: 'Not found',
     components: {
+        Preloader,
         Section,
         Footer
     }

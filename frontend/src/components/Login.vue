@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Preloader />
         <FlashMessage :position="'right top'"/>
         <section class="text-center headerContainer p-5">
             <div class="container" style="padding-top: 80px">
@@ -54,7 +55,6 @@
                     </div>
                 </div>
             </div>
-            <flash-message class="myCustomClass"></flash-message>
         </section>
         <Section />
         <Footer />
@@ -62,6 +62,7 @@
 </template>
 
 <script>
+import Preloader from './Preloader';
 import AuthController from '../controllers/auth.controller'
 import Section from './sections/Sectionv0';
 import Footer from './footers/Footer';
@@ -69,6 +70,7 @@ import Footer from './footers/Footer';
 export default {
     name: 'Login',
     components: {
+        Preloader,
         Section,
         Footer
     },
