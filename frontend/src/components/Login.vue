@@ -8,49 +8,67 @@
                     <div class="col" id="loginForm">
                         <h1>Login</h1>
                         <div class="form-group">
-                            <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Email..."
-                                v-model="login.email"
-                            />
-                            <input
-                                type="password"
-                                class="form-control"
-                                placeholder="Password..."
-                                v-model="login.password"
-                            />
+                            <div class="group">
+                                <input
+                                    type="text"
+                                    required
+                                    v-model="login.email">
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Email</label>
+                            </div>
+                            <div class="group">
+                                <input
+                                    type="password"
+                                    required
+                                    v-model="login.password">
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Password</label>
+                            </div>
                             <button class="btn btn-primary cus-btn-primary" style="font-size: 20px !important; width: 100%; margin: 10px;" @click="loginUser">Login</button>
                         </div>
                     </div>
                     <div class="col" id="RegisterForm">
                         <h1>Register</h1>
                         <div class="form-group">
-                            <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Username..."
-                                v-model="register.username"
-                            />
-                            <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Email..."
-                                v-model="register.email"
-                            />
-                            <input
-                                type="password"
-                                class="form-control"
-                                placeholder="Password..."
-                                v-model="register.password"
-                            />
-                            <input
-                                type="password"
-                                class="form-control"
-                                placeholder="Repeat Password..."
-                                v-model="register.repeatPassword"
-                            />
-                            <button class="btn btn-primary cus-btn-primary" style="font-size: 20px !important; width: 100%; margin: 10px;" @click="registerUser">Register</button>
+                            <div class="group">
+                                <input
+                                    type="text"
+                                    required
+                                    v-model="register.username">
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Username</label>
+                            </div>
+                            <div class="group">
+                                <input
+                                    type="text"
+                                    required
+                                    v-model="register.email">
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Email</label>
+                            </div>
+                            <div class="group">
+                                <input
+                                    type="password"
+                                    required
+                                    v-model="register.password">
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Password</label>
+                            </div>
+                            <div class="group">
+                                <input
+                                    type="password"
+                                    required
+                                    v-model="register.repeatPassword">
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Repeat Password</label>
+                            </div>
+                            <button class="btn btn-primary cus-btn-primary" style="font-size: 20px !important; width: 100%; margin: 10px" @click="registerUser">Register</button>
                         </div>
                     </div>
                 </div>
@@ -143,10 +161,57 @@ export default {
     border-color: #59a8f7 !important;
 }
 
-input {
-    margin: 10px;
-    padding: 10px;
+.group {
+    position:relative;
+    margin-bottom:25px;
 }
+
+input {
+    font-size:18px;
+    padding:10px 10px 10px 5px;
+    display:block;
+    width:100%;
+    border:none;
+    border-bottom:1px solid #757575;
+}
+input:focus{ outline:none; }
+
+label 				 {
+    color:#999;
+    font-size:18px;
+    font-weight:normal;
+    position:absolute;
+    pointer-events:none;
+    left:25px;
+    top:10px;
+    transition:0.2s ease all;
+    -moz-transition:0.2s ease all;
+    -webkit-transition:0.2s ease all;
+}
+
+input:focus ~ label, input:valid ~ label 		{
+    top:-20px;
+    font-size:14px;
+    color:#409EFF;
+}
+
+.highlight {
+    position:absolute;
+    height:60%;
+    width:100px;
+    top:25%;
+    left:0;
+    pointer-events:none;
+    opacity:0.5;
+}
+
+/* active state */
+input:focus ~ .highlight {
+    -webkit-animation:inputHighlighter 0.3s ease;
+    -moz-animation:inputHighlighter 0.3s ease;
+    animation:inputHighlighter 0.3s ease;
+}
+
 .flash__wrapper {
     position: fixed;
     bottom: 0px;
@@ -157,5 +222,20 @@ input {
 .flash__message {
     width: 300px;
 }
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+
 
 </style>

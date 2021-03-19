@@ -18,8 +18,8 @@
         mounted() {
             setTimeout(() => {
                 document.querySelector(".page-loader").classList.add('close');
-                setTimeout(() => this.isLoaded = true, 1500);
-            }, 500);
+                setTimeout(() => this.isLoaded = true, 1550);
+            }, 10);
         }
     }
 </script>
