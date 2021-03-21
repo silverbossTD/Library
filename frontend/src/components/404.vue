@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import Preloader from './Preloader';
+import Preloader from './preloaders/Preloader';
 import Section from './sections/Sectionv0';
 import Footer from './footers/Footer';
 export default {

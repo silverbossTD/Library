@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const url = 'http://localhost:5050';
 
-class NoteController {
+class AuthController {
     static checkCookie(id){
         return axios.post(`${url}/auth/checkCookie`, {
             id
@@ -26,4 +26,4 @@ class NoteController {
     }
 }
 
-export default NoteController;
+export default AuthController;

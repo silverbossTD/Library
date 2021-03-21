@@ -26,8 +26,8 @@
                       <img :src="logged.avatar" height="25px"> {{ logged.username }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">Setting</a>
-                      <a class="dropdown-item" style="color:red" @click="logout">Log out</a>
+                      <router-link to="/setting/profile" class="dropdown-item">Setting</router-link>
+                      <a class="dropdown-item" href="#" style="color:red" @click="logout">Log out</a>
                     </div>
                   </li>
               </ul>
@@ -58,6 +58,7 @@ export default {
             this.$cookies.remove('userId');
             this.cookie();
             this.flashInfo('Successfully logged out');
+            this.$router.go(this.$router.currentRoute);
         }
     },
     mounted() {

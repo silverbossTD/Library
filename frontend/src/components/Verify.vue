@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Preloader from './Preloader';
+import Preloader from './preloaders/Preloader';
 import AuthController from '../controllers/auth.controller'
 import Section from './sections/Sectionv0';
 import Footer from './footers/Footer';

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Preloader from './Preloader';
+import Preloader from './preloaders/Preloader';
 import Section from './sections/Section';
 import Body from './body/Body';
 import Footer from './footers/Footer';

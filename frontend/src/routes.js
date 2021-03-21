@@ -8,6 +8,11 @@ import Home from './components/Home'
 import Login from './components/Login'
 import Verify from './components/Verify'
 
+import Setting from './components/Setting'
+import Profile from './components/setting/Profile'
+import Upload from './components/setting/Upload'
+import YouBooks from './components/setting/Books'
+
 Vue.use(VueRouter);
 
 export const router = new VueRouter({
@@ -15,6 +20,17 @@ export const router = new VueRouter({
         {path: '/', component: Home},
         {path: '/signin', component: Login},
         {path: '/auth/verify/:id', component: Verify},
+
+        {
+            path: '/setting',
+            component: Setting,
+            children: [
+                {path: '/setting/profile', component: Profile},
+                {path: '/setting/upload', component: Upload},
+                {path: '/setting/yourbooks', component: YouBooks},
+            ]
+        },
+
         {path: '*', component: NotFound},
     ]
 })

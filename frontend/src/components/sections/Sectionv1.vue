@@ -1,12 +1,17 @@
 <template>
     <div>
-        <section class="text-center headerContainer p-5">
+        <section class="text-center headerContainer2 p-5">
             <div class="container" style="padding-top: 80px">
-                <h1>Enjoy ebooks and audiobooks for free</h1>
-                <p>through your local public library or school</p>
-                <button class="btn btn-primary cus-btn-primary">Upload your books</button>
-                <!-- <router-link to="/setting/upload" class="btn btn-primary cus-btn-primary">Upload your books</router-link> -->
-                <a href="#list"><span></span></a>
+                <div v-if="user">
+                    <h1 style="text-shadow: 0px 5px black;">Setting page</h1>
+                    <p style="text-shadow: 0px 5px black;">Edit your profile</p>
+                    <p style="text-shadow: 0px 5px black;">Let's share your great books</p>
+                    <a href="#list"><span></span></a>
+                </div>
+                <div v-else>
+                    <h1 style="text-shadow: 0px 5px black;">Setting page</h1>
+                    <p style="text-shadow: 0px 5px black;">Login to upload books, edit your profile</p>
+                </div>
             </div>
         </section>
     </div>
@@ -14,7 +19,8 @@
 
 <script>
 export default {
-    name: 'section'
+    name: 'section',
+    props: ['user']
 }
 </script>
 
@@ -37,22 +43,20 @@ section::after {
   background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,.8) 80%,rgba(0,0,0,.8) 100%);
 }
 
-.headerContainer p {
+.headerContainer2 p {
     color: #fff;
     font : normal 300 40px/1 'Josefin Sans', sans-serif;
-    text-shadow: 0px 5px black;
 }
-.headerContainer h1 {
+.headerContainer2 h1 {
     color: #fff;
     font : normal 350 55px/1 'Josefin Sans', sans-serif;
-    text-shadow: 0px 5px black;
 }
-.headerContainer a {
+.headerContainer2 a {
     position: absolute;
     bottom: 50px;
     left: 50%;
 }
-.headerContainer a span {
+.headerContainer2 a span {
     position: absolute;
     bottom: 50px;
     left: 50%;
@@ -64,7 +68,7 @@ section::after {
     box-sizing: border-box;
     z-index:99;
 }
-.headerContainer a span::before {
+.headerContainer2 a span::before {
     position: absolute;
     top: 10px;
     left: 50%;
@@ -79,7 +83,7 @@ section::after {
     box-sizing: border-box;
 }
 
-.headerContainer a span::after {
+.headerContainer2 a span::after {
     position: absolute;
     bottom: -18px;
     left: 50%;
@@ -94,10 +98,10 @@ section::after {
     box-sizing: border-box;
 }
 
-.headerContainer a:hover {
+.headerContainer2 a:hover {
     opacity: .5;
 }
-.headerContainer button {
+.headerContainer2 button {
     font-size: 25px;
 }
 
@@ -134,28 +138,28 @@ section::after {
   }
 }
 @media (max-width: 500px) {
-    .headerContainer p {
+    .headerContainer2 p {
         color: #fff;
         font : normal 300 50px/1 'Josefin Sans', sans-serif;
     }
-    .headerContainer h1 {
+    .headerContainer2 h1 {
         color: #fff;
         font : normal 350 40px/1 'Josefin Sans', sans-serif;
     }
-    .headerContainer button {
+    .headerContainer2 button {
         font-size: 20px;
     }
 }
 @media (max-width: 404px) {
-    .headerContainer p {
+    .headerContainer2 p {
         color: #fff;
         font : normal 300 20px/1 'Josefin Sans', sans-serif;
     }
-    .headerContainer h1 {
+    .headerContainer2 h1 {
         color: #fff;
         font : normal 350 30px/1 'Josefin Sans', sans-serif;
     }
-    .headerContainer button {
+    .headerContainer2 button {
         font-size: 15px;
     }
 }
