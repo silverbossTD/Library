@@ -26,7 +26,7 @@
                                 <span class="bar"></span>
                                 <label>Password</label>
                             </div>
-                            <button class="btn btn-primary cus-btn-primary" style="font-size: 20px !important; width: 100%; margin: 10px;" @click="loginUser">Login</button>
+                            <button class="btn btn-primary cus-btn-primary" style="font-size: 20px !important; width: 100%" @click="loginUser">Login</button>
                         </div>
                     </div>
                     <div class="col" id="RegisterForm">
@@ -68,7 +68,7 @@
                                 <span class="bar"></span>
                                 <label>Repeat Password</label>
                             </div>
-                            <button class="btn btn-primary cus-btn-primary" style="font-size: 20px !important; width: 100%; margin: 10px" @click="registerUser">Register</button>
+                            <button class="btn btn-primary cus-btn-primary" style="font-size: 20px !important; width: 100%" @click="registerUser">Register</button>
                         </div>
                     </div>
                 </div>
@@ -150,17 +150,6 @@ export default {
 </script>
 
 <style>
-.cus-btn-primary {
-    color: #fff;
-    background-color: #409eff !important;
-    border-color: #409eff !important;
-}
-
-.cus-btn-primary:hover {
-    background-color: #5d9ddd !important;
-    border-color: #59a8f7 !important;
-}
-
 .group {
     position:relative;
     margin-bottom:25px;
@@ -176,7 +165,7 @@ input {
 }
 input:focus{ outline:none; }
 
-label 				 {
+label {
     color:#999;
     font-size:18px;
     font-weight:normal;
@@ -189,8 +178,8 @@ label 				 {
     -webkit-transition:0.2s ease all;
 }
 
-input:focus ~ label, input:valid ~ label 		{
-    top:-20px;
+input:focus ~ label, input:valid ~ label {
+    top:-20px !important;
     font-size:14px;
     color:#409EFF;
 }
@@ -205,25 +194,12 @@ input:focus ~ label, input:valid ~ label 		{
     opacity:0.5;
 }
 
-/* active state */
 input:focus ~ .highlight {
     -webkit-animation:inputHighlighter 0.3s ease;
     -moz-animation:inputHighlighter 0.3s ease;
     animation:inputHighlighter 0.3s ease;
 }
 
-.flash__wrapper {
-    position: fixed;
-    bottom: 0px;
-    right: 10px;
-    z-index:99;
-    transition: 0.2s;
-}
-.flash__message {
-    width: 300px;
-}
-
-/* ANIMATIONS ================ */
 @-webkit-keyframes inputHighlighter {
 	from { background:#5264AE; }
   to 	{ width:0; background:transparent; }

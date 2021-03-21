@@ -58,12 +58,12 @@ class AuthController {
     }
     async register(req, res, next) {
         let errors = [];
-        await User.find({ "username": req.body.username}, (err, user) => {
+        await User.find({ username: req.body.username}, (err, user) => {
             if (user.length) {
                 errors.push("Username is already in use");
             }
         });
-        await User.find({ "email": req.body.email}, (err, user) => {
+        await User.find({ email: req.body.email}, (err, user) => {
             if (user.length) {
                 errors.push("Email is already in use");
             }

@@ -18,15 +18,32 @@ export default {
 </script>
 
 <style>
+html {
+    scroll-behavior: smooth;
+}
 body {
     overflow-x: hidden;
 }
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.cus-btn-primary {
+    color: #fff;
+    background-color: #409eff !important;
+    border-color: #409eff !important;
 }
+
+.cus-btn-primary:hover {
+    background-color: #5d9ddd !important;
+    border-color: #59a8f7 !important;
+}
+
+.flash__wrapper {
+    position: fixed;
+    bottom: 0px;
+    right: 10px;
+    z-index:99;
+    transition: 0.2s;
+}
+.flash__message {
+    width: 300px;
+}
+
 </style>
