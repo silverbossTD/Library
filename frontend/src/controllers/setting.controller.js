@@ -16,6 +16,18 @@ class SettingController {
 
         return axios.post(`${url}/setting/updateAvatar`, formData);
     }
+    static uploadBook(id, file, title, description, author, pdf) {
+        const formData = new FormData();
+
+        formData.append('file', file);
+        formData.append('id', id);
+        formData.append('title', title);
+        formData.append('description', description);
+        formData.append('pdf', pdf);
+        formData.append('author', author);
+
+        return axios.post(`${url}/setting/uploadbook`, formData);
+    }
 }
 
 export default SettingController;

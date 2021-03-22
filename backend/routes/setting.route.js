@@ -6,4 +6,6 @@ router.post('/editprofile', controller.editProfile);
 
 router.post('/updateavatar', controller.updateAvatar);
 
+router.post('/uploadbook', controller.uploadBook);
+
 module.exports = router;
