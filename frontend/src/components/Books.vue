@@ -10,11 +10,11 @@
 <script>
 import Preloader from './preloaders/Preloader';
 import Section from './sections/Section';
-import Body from './body/Body';
+import Body from './body/Bodyv1';
 import Footer from './footers/Footer';
 
 export default {
-    name: 'Home',
+    name: 'Books',
     components: {
         Preloader,
         Section,
@@ -26,10 +26,5 @@ export default {
 </script>
 
 <style>
-.headerContainer {
-    background: url('../assets/background.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 650px;
-}
+
 </style>

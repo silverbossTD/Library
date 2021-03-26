@@ -203,6 +203,7 @@
 .card-img-top {
     transition: 0.2s;
 }
+
 .card-img-top:hover {
     box-shadow: 5px 10px 20px #c6c6c6;
 }

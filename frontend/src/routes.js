@@ -5,8 +5,11 @@ import VueRouter from 'vue-router'
 
 import NotFound from './components/404'
 import Home from './components/Home'
+import Books from './components/Books'
 import Login from './components/Login'
 import Verify from './components/Verify'
+
+/* Components setting */
 
 import Setting from './components/Setting'
 import Profile from './components/setting/Profile'
@@ -18,6 +21,7 @@ Vue.use(VueRouter);
 export const router = new VueRouter({
     routes: [
         {path: '/', component: Home},
+        {path: '/books', component: Books},
         {path: '/signin', component: Login},
         {path: '/auth/verify/:id', component: Verify},
 

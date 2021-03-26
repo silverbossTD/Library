@@ -11,6 +11,7 @@ const fileUpload     = require('express-fileupload');
 
 const authRoute      = require('./routes/auth.route');
 const settingRoute   = require('./routes/setting.route');
+const bookRoute      = require('./routes/book.route');
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -26,5 +27,6 @@ connect();
 
 app.use('/auth', authRoute);
 app.use('/setting', settingRoute);
+app.use('/book', bookRoute);
 
 app.listen(port, () => console.log(`Server running at http://localhost:${port}`));

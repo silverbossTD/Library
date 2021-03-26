@@ -7,7 +7,6 @@ const myClientID    = "368efbb07588b30";
 
 imgur.setClientID(myClientID);
 
-
 class SettingController {
     async editProfile(req, res, next) {
         User.updateOne({ id: req.body.id }, {description: req.body.description})
@@ -39,7 +38,7 @@ class SettingController {
                 title:          req.body.title,
                 author:         req.body.author,
                 description:    req.body.description,
-                date:           new Date(),
+                date:           new Date().toLocaleDateString(),
                 text:           filePdf,
                 userId:         req.body.id
             });
