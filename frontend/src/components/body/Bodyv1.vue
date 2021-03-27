@@ -1,5 +1,5 @@
 <template>
-    <div class="body container">
+    <div class="body container" id="list">
         <div class="page-loader2" v-if="!books">
             <div class="cube2"></div>
             <div class="cube2"></div>
@@ -23,7 +23,7 @@
                       >
                       <div class="card-body">
                         <h3 class="card-title">{{ book.title }}</h3>
-                        <p class="card-date">{{ book.date }}</p>
+                        <p class="card-date">{{ book.date | moment("MMMM D, YYYY") }}</p>
                       </div>
                   </a>
                 </div>

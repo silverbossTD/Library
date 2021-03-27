@@ -27,7 +27,7 @@
                               >
                               <div class="card-body">
                                 <h3 class="card-title">{{ book.title }}</h3>
-                                <p class="card-date">{{ book.date }}</p>
+                                <p class="card-date">{{ book.date | moment("MMMM D, YYYY") }}</p>
                               </div>
                           </a>
                         </div>
@@ -49,7 +49,7 @@
                               >
                               <div class="card-body">
                                 <h3 class="card-title">{{ book.title }}</h3>
-                                <p class="card-date">{{ book.date }}</p>
+                                <p class="card-date">{{ book.date | moment("MMMM D, YYYY") }}</p>
                               </div>
                           </a>
                         </div>
@@ -84,7 +84,7 @@
                       >
                       <div class="card-body">
                         <h3 class="card-title">{{ book.title }}</h3>
-                        <p class="card-date">{{ book.date }}</p>
+                        <p class="card-date">{{ book.date | moment("MMMM D, YYYY") }}</p>
                       </div>
                   </a>
                 </div>

@@ -4,6 +4,7 @@ import App from './App.vue'
 import FlashMessage from '@smartweb/vue-flash-message';
 import VueFlashMessage from 'vue-flash-message';
 import VueCookies from 'vue-cookies'
+import VueMoment from 'vue-moment'
 
 import { router } from './routes'
 
@@ -13,11 +14,12 @@ Vue.config.productionTip = false
 
 Vue.use(VueCookies);
 Vue.use(FlashMessage);
+Vue.use(VueMoment);
 Vue.use(VueFlashMessage, {
   messageOptions: {
     timeout: 2500,
   }
-})
+});
 
 new Vue({
     router,
