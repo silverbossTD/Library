@@ -5,10 +5,10 @@
         <div class="body container" id="list">
             <Preloaderv1 v-if="!book"/>
             <div class="row" v-if="book">
-                <div class="col-3 m-4" style="border-right: 1px solid silver">
-                    <img :src="book.image" alt="" style="height: 330px;width:220px">
+                <div class="col-3 m-4 informationBook" style="border-right: 1px solid silver">
+                    <img :src="book.image" class="informationBookImage">
                     <h3>{{ book.title }}</h3>
-                    <h5>Author: {{ book.author }}</h5>
+                    <h5>Author: <u>{{ book.author }}</u></h5>
                     <h5>Upload date: {{ book.date | moment("MMMM D, YYYY") }}</h5>
                     <div class="heart-btn" @click="addStar">
                         <div class="content-heart">
@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="col m-4">
-                    <a :href="'data:application/pdf;base64,' + book.text" download="proposed_file_name" class="btn btn-primary cus-btn-primary m-1" style="width: 100%" >Download</a>
+                    <a :href="'data:application/pdf;base64,' + book.text" :download="book.title" class="btn btn-primary cus-btn-primary m-1" style="width: 100%" >Download</a>
                     <button class="btn btn-primary cus-btn-primary m-1" style="width: 100%">Read Online</button>
                     <textarea v-model="book.description" style="border:none;outline:none;height:100%;width:100%;pointer-events:none"></textarea>
                 </div>
@@ -77,52 +77,76 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Montserrat:600&display=swap');
+.informationBook {
+    border-right: 1px solid silver;
+}
+.informationBookImage {
+    height: 330px;
+    width: 100%;
+}
 .heart-btn{
-    width: 200px;
-  position: absolute;
+    width: 80%;
+    position: absolute;
 }
 .content-heart{
-  padding: 13px 16px;
-  display: flex;
-  border: 2px solid #eae2e1;
-  border-radius: 5px;
-  cursor: pointer;
+    padding: 13px 16px;
+    display: flex;
+    border: 2px solid #eae2e1;
+    border-radius: 5px;
+    cursor: pointer;
 }
 .content-heart.heart-active{
-  border-color: #f9b9c4;
-  background: #fbd0d8;
+    border-color: #f9b9c4;
+    background: #fbd0d8;
 }
 .heart{
-  position: absolute;
-  background: url("../assets/hearts.png") no-repeat;
-  background-position: left;
-  background-size: 2900%;
-  height: 90px;
-  width: 90px;
-  top: 50%;
-  left: 40%;
-  transform: translate(-50%,-50%);
+    position: absolute;
+    background: url("../assets/hearts.png") no-repeat;
+    background-position: left;
+    background-size: 2900%;
+    height: 90px;
+    width: 90px;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%,-50%);
 }
 .numb{
-  font-size: 21px;
-  margin-left: 7vw;
-  font-weight: 600;
-  color: #9C9496;
-  font-family: sans-serif;
+    font-size: 21px;
+    margin-left: 7vw;
+    font-weight: 600;
+    color: #9C9496;
+    font-family: sans-serif;
 }
 .text.heart-active{
-  color: #000;
+    color: #000;
 }
 .heart.heart-active{
-  animation: animate .8s steps(28) 1;
-  background-position: right;
+    animation: animate .8s steps(28) 1;
+    background-position: right;
 }
 @keyframes animate {
-  0%{
-    background-position: left;
-  }
-  100%{
-    background-position: right;
-  }
+    0%{
+        background-position: left;
+    }
+    100%{
+        background-position: right;
+    }
+}
+
+@media (max-width: 764px) {
+    .informationBook {
+        border: none;
+    }
+    .informationBookImage {
+        height: 200px;
+    }
+}
+@media (max-width: 450px) {
+    .informationBook {
+        border: none !important;
+    }
+    .informationBookImage {
+        height: 150px;
+    }
 }
 </style>
