@@ -6,4 +6,6 @@ router.post('/getbooks', controller.getBooks);
 
 router.post('/informationbook/:id', controller.informationBook);
 
+router.post('/informationbook/:id/likebook', controller.likeBook);
+
 module.exports = router;

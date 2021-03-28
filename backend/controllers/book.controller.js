@@ -6,6 +6,9 @@ class BookController {
         Book.find({})
         .then((books) => {
             books = books.map(book => book = book.toObject());
+            books.sort(function(a,b){
+              return b.stars - a.stars;
+            });
             res.send(books);
         });
     }
@@ -15,6 +18,10 @@ class BookController {
             books = books.map(book => book = book.toObject());
             res.send(books);
         });
+    }
+    async likeBook(req, res, next) {
+        Book.updateOne({ id: req.params.id }, {userlike: req.body.userlike, stars: req.body.stars})
+        .then(() => res.send('Liked post'));
     }
 }
 

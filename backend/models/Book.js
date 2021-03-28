@@ -10,6 +10,7 @@ const Book = new Schema({
     description:   {type: String},
     date:          {type: Date, default: Date.now},
     text:          {type: Buffer},
+    userlike:      {type: Array, default: []},
     userId:        {type: String}
 });
 

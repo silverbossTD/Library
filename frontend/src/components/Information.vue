@@ -20,7 +20,7 @@
                 <div class="col m-4">
                     <a :href="'data:application/pdf;base64,' + book.text" :download="book.title" class="btn btn-primary cus-btn-primary m-1" style="width: 100%" >Download</a>
                     <button class="btn btn-primary cus-btn-primary m-1" style="width: 100%">Read Online</button>
-                    <textarea v-model="book.description" style="border:none;outline:none;height:100%;width:100%;pointer-events:none"></textarea>
+                    <textarea readonly v-model="book.description" style="border:none;outline:none;height:100%;width:100%;"></textarea>
                 </div>
             </div>
         </div>
@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import AuthController from '../controllers/auth.controller'
 import BookController from '../controllers/book.controller'
 
 import Preloader from './preloaders/Preloader';
@@ -48,28 +49,57 @@ export default {
     data() {
         return {
             book: '',
+            logged: '',
             like: false,
             bookId: this.$route.params.id
         }
     },
     methods: {
+        async cookie() {
+            const userId = this.$cookies.get('userId');
+            const data = await AuthController.checkCookie(userId);
+            this.logged = data.data;
+        },
         async getBook() {
             const data = await BookController.informationBook(this.bookId);
             this.book = data.data[0];
+            if (this.logged) {
+                this.like = this.book.userlike.includes(this.logged.username) ? true : false;
+            }
         },
         async addStar() {
+            if (!this.logged) {
+                this.flashError('Login to like this book');
+                return;
+            }
             const content = document.querySelector('.content-heart');
-            content.onclick = () => {
+            content.onclick = async () => {
                 this.like = !this.like;
                 document.querySelector('.content-heart').classList.toggle('heart-active');
                 document.querySelector('.numb').classList.toggle('heart-active');
                 document.querySelector('.heart').classList.toggle('heart-active');
-                document.querySelector('.numb').innerHTML = (this.like) ? ++this.book.stars : --this.book.stars;
+                if (this.like) {
+                    document.querySelector('.numb').innerHTML = ++this.book.stars;
+                    this.book.userlike.push(this.logged.username);
+                    await BookController.likeBook(this.bookId, this.book.userlike, this.book.stars);
+                } else {
+                    document.querySelector('.numb').innerHTML = --this.book.stars;
+                    const index = this.book.userlike.indexOf(this.logged.username);
+                    this.book.userlike.splice(index, 1);
+                    await BookController.likeBook(this.bookId, this.book.userlike, this.book.stars);
+                }
             };
         }
     },
-    mounted() {
-        this.getBook();
+    async mounted() {
+        await this.cookie();
+        await this.getBook();
+        if (this.like) {
+            console.log('hi');
+            document.querySelector('.content-heart').classList.toggle('heart-active');
+            document.querySelector('.numb').classList.toggle('heart-active');
+            document.querySelector('.heart').classList.toggle('heart-active');
+        }
     }
 }
 
@@ -86,9 +116,11 @@ export default {
 }
 .heart-btn{
     width: 80%;
+    height: 61px;
     position: absolute;
 }
 .content-heart{
+    height: 61px;
     padding: 13px 16px;
     display: flex;
     border: 2px solid #eae2e1;
@@ -111,8 +143,10 @@ export default {
     transform: translate(-50%,-50%);
 }
 .numb{
+    position: absolute;
+    top: 25%;
+    left: 55%;
     font-size: 21px;
-    margin-left: 7vw;
     font-weight: 600;
     color: #9C9496;
     font-family: sans-serif;
@@ -147,6 +181,14 @@ export default {
     }
     .informationBookImage {
         height: 150px;
+    }
+}
+@media (max-width: 300px) {
+    .informationBook {
+        border: none !important;
+    }
+    .informationBookImage {
+        height: 100px;
     }
 }
 </style>
