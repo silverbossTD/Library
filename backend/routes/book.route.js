@@ -4,4 +4,6 @@ const router      = express.Router();
 
 router.post('/getbooks', controller.getBooks);
 
+router.post('/informationbook/:id', controller.informationBook);
+
 module.exports = router;

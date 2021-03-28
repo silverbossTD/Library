@@ -1,11 +1,6 @@
 <template>
     <div class="body container">
-        <div class="page-loader2" v-if="!books">
-            <div class="cube2"></div>
-            <div class="cube2"></div>
-            <div class="cube2"></div>
-            <div class="cube2"></div>
-        </div>
+        <Preloader v-if="!books"/>
         <div id="list" v-if="books">
             <hr />
             <h1 class="p-3 text-center">Trending Books</h1>
@@ -19,17 +14,17 @@
                             v-bind:index="index"
                             v-bind:key="book.id"
                         >
-                          <a href="#">
-                              <img class="card-img-top"
-                                :src="book.image"
-                                alt="Card image cap"
-                                style="height: 266.66px"
-                              >
-                              <div class="card-body">
-                                <h3 class="card-title">{{ book.title }}</h3>
-                                <p class="card-date">{{ book.date | moment("MMMM D, YYYY") }}</p>
-                              </div>
-                          </a>
+                        <router-link :to="'/informationbook/' + book.id">
+                            <img class="card-img-top"
+                              :src="book.image"
+                              alt="Card image cap"
+                              style="height: 266.66px"
+                            >
+                            <div class="card-body">
+                              <h3 class="card-title">{{ book.title }}</h3>
+                              <p class="card-date">{{ book.date | moment("MMMM D, YYYY") }}</p>
+                            </div>
+                        </router-link>
                         </div>
                     </ul>
                 </div>
@@ -76,17 +71,17 @@
                     v-bind:index="index"
                     v-bind:key="book.id"
                 >
-                  <a href="#">
-                      <img class="card-img-top"
-                        :src="book.image"
-                        alt="Card image cap"
-                        style="height: 266.66px"
-                      >
-                      <div class="card-body">
-                        <h3 class="card-title">{{ book.title }}</h3>
-                        <p class="card-date">{{ book.date | moment("MMMM D, YYYY") }}</p>
-                      </div>
-                  </a>
+                <router-link :to="'/informationbook/' + book.id">
+                    <img class="card-img-top"
+                      :src="book.image"
+                      alt="Card image cap"
+                      style="height: 266.66px"
+                    >
+                    <div class="card-body">
+                      <h3 class="card-title">{{ book.title }}</h3>
+                      <p class="card-date">{{ book.date | moment("MMMM D, YYYY") }}</p>
+                    </div>
+                </router-link>
                 </div>
             </ul>
         </div>
@@ -94,6 +89,7 @@
 </template>
 
 <script>
+import Preloader from '../preloaders/Preloaderv1'
 import BookController from '../../controllers/book.controller'
 
 export default {
@@ -102,6 +98,9 @@ export default {
         return {
             books: ''
         }
+    },
+    components: {
+        Preloader
     },
     methods: {
         async getBooks() {

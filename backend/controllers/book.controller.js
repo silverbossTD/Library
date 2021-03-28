@@ -9,6 +9,13 @@ class BookController {
             res.send(books);
         });
     }
+    async informationBook(req, res, next) {
+        Book.find({ id: req.params.id })
+        .then((books) => {
+            books = books.map(book => book = book.toObject());
+            res.send(books);
+        });
+    }
 }
 
 module.exports = new BookController();

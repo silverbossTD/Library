@@ -8,6 +8,7 @@ import Home from './components/Home'
 import Books from './components/Books'
 import Login from './components/Login'
 import Verify from './components/Verify'
+import Information from './components/Information'
 
 /* Components setting */
 
@@ -24,6 +25,7 @@ export const router = new VueRouter({
         {path: '/books', component: Books},
         {path: '/signin', component: Login},
         {path: '/auth/verify/:id', component: Verify},
+        {path: '/informationbook/:id', component: Information},
 
         {
             path: '/setting',
