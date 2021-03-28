@@ -28,6 +28,14 @@ class SettingController {
 
         return axios.post(`${url}/setting/uploadbook`, formData);
     }
+    static getYourBooks(id) {
+        return axios.post(`${url}/setting/yourbooks/${id}`);
+    }
+    static deleteBook(id, userId) {
+        return axios.post(`${url}/setting/deletebook/${id}`, {
+            userId
+        });
+    }
 }
 
 export default SettingController;

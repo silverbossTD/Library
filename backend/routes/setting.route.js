@@ -8,4 +8,8 @@ router.post('/updateavatar', controller.updateAvatar);
 
 router.post('/uploadbook', controller.uploadBook);
 
+router.post('/yourbooks/:id', controller.getYourBooks);
+
+router.post('/deletebook/:id', controller.deleteBook);
+
 module.exports = router;

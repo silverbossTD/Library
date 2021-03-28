@@ -46,6 +46,21 @@ class SettingController {
             .then(() => res.send('Upload book success'))
         });
     }
+    async getYourBooks(req, res, next) {
+        Book.find({ userId: req.params.id })
+        .then((books) => {
+            books = books.map(book => book = book.toObject());
+            res.send(books);
+        });
+    }
+    async deleteBook(req, res, next) {
+        const book = await Book.find({ id : req.params.id });
+        if (req.body.userId != book[0].userId) {
+            return;
+        }
+        Book.deleteOne( { id : req.params.id } )
+        .then(() => res.send(['success', 'Deleted book successfully']));
+    }
 }
 
 module.exports = new SettingController();

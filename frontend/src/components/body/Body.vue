@@ -123,6 +123,7 @@ export default {
 
 .card {
     width: 200px !important;
+    height: 376.66px !important;
     margin: auto;
     border: none;
     transition: 0.2s;
