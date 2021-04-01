@@ -18,12 +18,54 @@
                     </div>
                 </div>
                 <div class="col m-4">
-                    <a :href="'data:application/pdf;base64,' + book.text" :download="book.title" class="btn btn-primary cus-btn-primary m-1" style="width: 100%" >Download</a>
-                    <button class="btn btn-primary cus-btn-primary m-1" style="width: 100%">Read Online</button>
-                    <textarea readonly v-model="book.description" style="border:none;outline:none;height:100%;width:100%;"></textarea>
+                    <a :href="'data:application/pdf;base64,' + book.text" :download="book.title" class="button_downloads m-1" style="width: 100%" >
+                        <span class="button__text">Download</span>
+                        <span class="button__icon">
+                            <ion-icon name="cloud-download-outline"></ion-icon>
+                        </span>
+                    </a>
+                    <button class="button_read m-1" style="width: 100%;color: white" data-toggle="modal" data-target="#readBook">
+                        <span class="button__text">Read Online</span>
+                        <span class="button__icon">
+                            <ion-icon name="book-outline"></ion-icon>
+                        </span>
+                    </button>
+                    <textarea readonly v-model="book.description" style="border:none;outline:none;height:100%;width:100%;overflow:auto"></textarea>
                 </div>
             </div>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="readBook" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Read Book Online</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="overflow:auto">
+                        <div class="d-flex">
+                            <input type="text" class="form-control" placeholder="Page" v-model="currentPage" style="width: 100px"> / {{pageCount}}
+                        </div>
+                        <pdf
+                            :src="'data:application/pdf;base64,' + book.text"
+                            @num-pages="pageCount = $event"
+                            @page-loaded="currentPage = $event"
+                            :page="parseInt(currentPage)"
+                            >
+                        </pdf>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" @click="currentPage--">Previous</button>
+                        <button type="button" class="btn btn-primary" @click="currentPage++">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <Footer />
     </div>
 </template>
@@ -38,12 +80,15 @@ import Preloaderv1 from './preloaders/Preloaderv1'
 import Section from './sections/Section';
 import Footer from './footers/Footer';
 
+import pdf from 'vue-pdf'
+
 export default {
     name: 'Information',
     components: {
         Preloader,
         Preloaderv1,
         Section,
+        pdf,
         Footer
     },
     data() {
@@ -51,6 +96,8 @@ export default {
             book: '',
             logged: '',
             like: false,
+            currentPage: 1,
+			pageCount: 0,
             bookId: this.$route.params.id
         }
     },
@@ -95,7 +142,6 @@ export default {
         await this.cookie();
         await this.getBook();
         if (this.like) {
-            console.log('hi');
             document.querySelector('.content-heart').classList.toggle('heart-active');
             document.querySelector('.numb').classList.toggle('heart-active');
             document.querySelector('.heart').classList.toggle('heart-active');
@@ -107,6 +153,7 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Montserrat:600&display=swap');
+
 .informationBook {
     border-right: 1px solid silver;
 }
@@ -158,6 +205,61 @@ export default {
     animation: animate .8s steps(28) 1;
     background-position: right;
 }
+
+.button_downloads,
+.button_read {
+    display: inline-flex;
+    height: 50px;
+    width: 100%;
+    padding: 0;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    overflow: hidden;
+    font-size: 16px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    color: white;
+    transition: 0.3s;
+    opacity: 0.8;
+}
+
+.button_downloads:hover,
+.button_read:hover {
+    color: white;
+    text-decoration: none;
+    opacity: 1;
+}
+
+.button_read:focus,
+.button_downloads:focus {
+    outline: none;
+}
+
+.button_downloads {
+    background: #009578;
+}
+
+.button_read {
+    background: #e5db1d;
+}
+
+.button__text,
+.button__icon {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 24px;
+    width: 100%;
+    height: 100%;
+}
+
+.button__icon {
+    font-size: 1.5em;
+    float: right;
+    background: rgba(0, 0, 0, 0.08);
+}
+
 @keyframes animate {
     0%{
         background-position: left;
