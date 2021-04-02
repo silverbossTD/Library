@@ -16,6 +16,7 @@ import Setting from './components/Setting'
 import Profile from './components/setting/Profile'
 import Upload from './components/setting/Upload'
 import YouBooks from './components/setting/Books'
+import EditBook from './components/setting/Edit'
 
 Vue.use(VueRouter);
 
@@ -34,6 +35,7 @@ export const router = new VueRouter({
                 {path: '/setting/profile', component: Profile},
                 {path: '/setting/upload', component: Upload},
                 {path: '/setting/yourbooks', component: YouBooks},
+                {path: '/setting/editbook/:id', component: EditBook},
             ]
         },
 

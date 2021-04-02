@@ -12,4 +12,6 @@ router.post('/yourbooks/:id', controller.getYourBooks);
 
 router.post('/deletebook/:id', controller.deleteBook);
 
+router.post('/editbook/:id', controller.editBook);
+
 module.exports = router;

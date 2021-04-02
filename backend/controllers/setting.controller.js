@@ -61,6 +61,14 @@ class SettingController {
         Book.deleteOne( { id : req.params.id } )
         .then(() => res.send(['success', 'Deleted book successfully']));
     }
+    async editBook(req, res, next) {
+        const book = await Book.find({ id : req.params.id });
+        if (req.body.userId != book[0].userId) {
+            return;
+        }
+        Book.updateOne({ id: req.params.id }, {title: req.body.title, author: req.body.author, description: req.body.description})
+        .then(() => res.send('Edited book success'));
+    }
 }
 
 module.exports = new SettingController();

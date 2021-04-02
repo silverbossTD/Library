@@ -36,6 +36,14 @@ class SettingController {
             userId
         });
     }
+    static editBook(userId, bookId, title, author, description) {
+        return axios.post(`${url}/setting/editbook/${bookId}`, {
+            userId,
+            title,
+            author,
+            description
+        });
+    }
 }
 
 export default SettingController;

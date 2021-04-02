@@ -9,7 +9,8 @@
                     v-bind:index="index"
                     v-bind:key="book.id"
                 >
-                <button class="btn btn-danger" style="position:absolute" @click="deleteBook(book.id)">Delete</button>
+                <button class="btn btn-danger" style="position:absolute; left:0" @click="deleteBook(book.id)">Delete</button>
+                <router-link :to="'editbook/' + book.id" class="btn btn-warning" style="position:absolute; right:0">Edit</router-link>
                 <router-link :to="'/informationbook/' + book.id">
                     <img class="card-img-top"
                       :src="book.image"

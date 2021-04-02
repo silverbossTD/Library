@@ -162,6 +162,8 @@ input {
     width:100%;
     border:none;
     border-bottom:1px solid #757575;
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
 }
 input:focus{ outline:none; }
 
@@ -181,7 +183,7 @@ label {
 input:focus ~ label, input:valid ~ label {
     top:-20px !important;
     font-size:14px;
-    color:#409EFF;
+    color: #409EFF;
 }
 
 .highlight {
