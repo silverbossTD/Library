@@ -40,14 +40,15 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Read Book Online</h5>
+                        <h5 class="modal-title d-flex" id="exampleModalLabel">Read Book Online <input type="text" class="form-control ml-2" placeholder="Page" v-model="currentPage" style="width: 100px"> / {{pageCount}} Pages</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body" style="overflow:auto">
                         <div class="d-flex">
-                            <input type="text" class="form-control" placeholder="Page" v-model="currentPage" style="width: 100px"> / {{pageCount}}
+                            <button type="button" class="btn btn-primary mr-2" @click="currentPage--">Previous</button>
+                            <button type="button" class="btn btn-primary" @click="currentPage++">Next</button>
                         </div>
                         <pdf
                             :src="'data:application/pdf;base64,' + book.text"
@@ -59,8 +60,6 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" @click="currentPage--">Previous</button>
-                        <button type="button" class="btn btn-primary" @click="currentPage++">Next</button>
                     </div>
                 </div>
             </div>
