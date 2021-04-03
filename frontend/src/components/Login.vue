@@ -111,16 +111,16 @@ export default {
             if (this.login.email == '' ||
                 this.login.password == ''
             ) {
-                this.flashError('Wrong email or password');
+                this.$snotify.error('Wrong email or password');
                 return;
             }
             const data = await AuthController.login(this.login.email, this.login.password);
             if (data.data[0] === "errors") {
-                this.flashError(data.data[1]);
+                this.$snotify.error(data.data[1]);
                 return;
             }
             this.$cookies.set('userId', data.data[2]);
-            this.flashSuccess(data.data[1]);
+            this.$snotify.success(data.data[1]);
             this.$router.go(this.$router.currentRoute);
         },
         async registerUser() {
@@ -129,21 +129,21 @@ export default {
                 this.register.password == '' ||
                 this.register.repeatPassword == ''
             ) {
-                this.flashError('Please enter your full information');
+                this.$snotify.error('Please enter your full information');
                 return;
             }
 
             if (this.register.password != this.register.repeatPassword) {
-                this.flashError('Incorrect password');
+                this.$snotify.error('Incorrect password');
                 return;
             }
 
             const data = await AuthController.register(this.register.username, this.register.email, this.register.password);
             if (data.data[0] === "errors") {
-                this.flashError(data.data[1]);
+                this.$snotify.error(data.data[1]);
                 return;
             }
-            this.flashSuccess(data.data[1]);
+            this.$snotify.success(data.data[1]);
         }
     }
 }

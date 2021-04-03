@@ -2,7 +2,7 @@
   <div>
       <Header />
       <router-view></router-view>
-      <flash-message class="myCustomClass"></flash-message>
+      <vue-snotify></vue-snotify>
   </div>
 </template>
 

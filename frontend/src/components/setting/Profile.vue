@@ -72,7 +72,7 @@ export default {
         async editProfile() {
             const userId = this.$cookies.get('userId');
             const data = await SettingController.editProfile(userId, this.logged.description);
-            this.flashSuccess(data.data);
+            this.$snotify.success(data.data);
             this.cookie();
         },
         async onFileChange(e) {
@@ -80,7 +80,7 @@ export default {
 
             const userId = this.$cookies.get('userId');
             const data = await SettingController.updateAvatar(userId, image);
-            this.flashSuccess(data.data);
+            this.$snotify.success(data.data);
             this.$router.go(this.$router.currentRoute);
         }
     },

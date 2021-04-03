@@ -77,7 +77,7 @@ export default {
             if (this.isCorrect) {
                 const userId = this.$cookies.get('userId');
                 const data = await SettingController.editBook(userId, this.bookId, this.book.title, this.book.author, this.book.description);
-                this.flashSuccess(data.data);
+                this.$snotify.success(data.data);
                 await this.getBook();
             }
         }

@@ -32,7 +32,6 @@ export default {
     },
     methods: {
         async verifyUser() {
-            console.log(this.userId);
             const data = await AuthController.verify(this.userId);
             this.verify = data.data;
         }

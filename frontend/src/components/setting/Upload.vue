@@ -121,7 +121,7 @@ export default {
 
                 const userId = this.$cookies.get('userId');
                 const data = await SettingController.uploadBook(userId, image, this.title, this.description, this.author, this.pdf);
-                this.flashSuccess(data.data);
+                this.$snotify.success(data.data);
                 this.image = '';
                 this.title = '';
                 this.description = '';
@@ -129,7 +129,7 @@ export default {
                 this.pdf = '';
                 return;
             }
-            this.flashError('Please enter all the information');
+            this.$snotify.error('Please enter all the information');
         }
     },
     mounted() {

@@ -115,7 +115,7 @@ export default {
         },
         async addStar() {
             if (!this.logged) {
-                this.flashError('Login to like this book');
+                this.$snotify.error('Login to like this book');
                 return;
             }
             const content = document.querySelector('.content-heart');

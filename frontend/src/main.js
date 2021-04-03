@@ -1,24 +1,26 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-import FlashMessage from '@smartweb/vue-flash-message';
-import VueFlashMessage from 'vue-flash-message';
+import FlashMessage from '@smartweb/vue-flash-message'
+import Snotify from 'vue-snotify'
 import VueCookies from 'vue-cookies'
 import VueMoment from 'vue-moment'
 
 import { router } from './routes'
 
-import 'vue-flash-message/dist/vue-flash-message.min.css'
+import 'vue-snotify/styles/material.css'
 
 Vue.config.productionTip = false
 
 Vue.use(VueCookies);
 Vue.use(FlashMessage);
 Vue.use(VueMoment);
-Vue.use(VueFlashMessage, {
-  messageOptions: {
-    timeout: 2500,
-  }
+Vue.use(Snotify, {
+  toast: {
+    timeout: 2500
+  },
+  showProgressBar: true,
+  closeOnClick: false
 });
 
 new Vue({

@@ -57,7 +57,7 @@ export default {
         async logout() {
             this.$cookies.remove('userId');
             this.cookie();
-            this.flashInfo('Successfully logged out');
+            this.$snotify.info('Successfully logged out');
             this.$router.go(this.$router.currentRoute);
         }
     },

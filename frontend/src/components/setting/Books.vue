@@ -57,7 +57,8 @@ export default {
         },
         async deleteBook(id) {
             const data = await SettingController.deleteBook(id, this.logged.id);
-            this.flashSuccess(data.data[1]);
+            this.$snotify.success(data.data[1]);
+            this.books = '';
             this.getYourBooks();
         }
     },
