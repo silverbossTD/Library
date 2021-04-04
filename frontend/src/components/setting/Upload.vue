@@ -75,7 +75,10 @@
                     <textarea rows="8" cols="80" class="form-control" style="border:none; outline:none" v-model="description"></textarea>
                 </div>
                 <hr />
-                <button class="btn btn-primary cus-btn-primary mb-3" @click="uploadBook">Upload Book</button>
+                <button class="btn btn-primary cus-btn-primary mb-3 spinner-btn" @click="uploadBook">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-if="spinner"></span>
+                    Upload Book
+                </button>
             </div>
         </div>
         <Preloader />
@@ -92,6 +95,7 @@ export default {
     data() {
         return {
             isLoaded: false,
+            spinner: false,
             logged: '',
             image: '',
             pdf: '',
@@ -108,6 +112,7 @@ export default {
             const userId = this.$cookies.get('userId');
             const data = await AuthController.checkCookie(userId);
             this.logged = data.data;
+            this.spinner = false;
         },
         async onImageChange(e) {
             this.image = e.target.files[0];
@@ -117,6 +122,7 @@ export default {
         },
         async uploadBook() {
             if (this.image != '' && this.title != '' && this.description != '' && this.author != '') {
+                this.spinner = true;
                 const image = this.image;
 
                 const userId = this.$cookies.get('userId');

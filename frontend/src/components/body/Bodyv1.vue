@@ -16,9 +16,12 @@
                       alt="Card image cap"
                       style="height: 266.66px"
                     >
+                    <div class="card-description container">
+                        <p>{{ book.description.slice(0, 180) + '...' }}</p>
+                    </div>
                     <div class="card-body">
-                      <h3 class="card-title">{{ book.title }}</h3>
-                      <p class="card-date">{{ book.date | moment("MMMM D, YYYY") }}</p>
+                        <h3 class="card-title">{{ book.title }}</h3>
+                        <p class="card-date">{{ book.date | moment("MMMM D, YYYY") }}</p>
                     </div>
                 </router-link>
                 </div>

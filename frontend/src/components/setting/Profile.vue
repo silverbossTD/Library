@@ -39,7 +39,10 @@
                     <textarea rows="8" cols="80" class="form-control" v-model="logged.description" style="border:none; outline:none"></textarea>
                 </div>
                 <hr />
-                <button class="btn btn-primary cus-btn-primary mb-3" @click="editProfile">Edit Profile</button>
+                <button class="btn btn-primary cus-btn-primary mb-3 spinner-btn" @click="editProfile">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-if="spinner"></span>
+                    Edit Profile
+                </button>
             </div>
         </div>
         <Preloader />
@@ -56,6 +59,7 @@ export default {
     data() {
         return {
             isLoaded: false,
+            spinner: false,
             logged: '',
             file: ''
         }
@@ -68,8 +72,10 @@ export default {
             const userId = this.$cookies.get('userId');
             const data = await AuthController.checkCookie(userId);
             this.logged = data.data;
+            this.spinner = false;
         },
         async editProfile() {
+            this.spinner = true;
             const userId = this.$cookies.get('userId');
             const data = await SettingController.editProfile(userId, this.logged.description);
             this.$snotify.success(data.data);

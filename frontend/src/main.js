@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import 'bootstrap'
 import App from './App.vue'
 
 import FlashMessage from '@smartweb/vue-flash-message'

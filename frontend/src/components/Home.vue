@@ -32,4 +32,44 @@ export default {
     background-size: cover;
     height: 650px;
 }
+.list-card {
+    display: flex;
+    flex-wrap: wrap;
+}
+.card {
+    width: 200px !important;
+    height: 376.66px !important;
+    margin: auto;
+    border: none;
+}
+.card-img-top {
+    transition: 0.2s;
+}
+.card:hover .card-img-top {
+    box-shadow: 5px 10px 20px #c6c6c6;
+}
+.card:hover .card-description {
+    top: 0;
+    visibility: visible;
+    opacity: 1;
+}
+.card-description {
+    visibility: none;
+    opacity: 0;
+    transition: 0.2s;
+    position: absolute;
+    top: 50px;
+    color: white;
+    background: rgba(0, 0, 0, 0.3);
+    height: 266.66px;
+    transition: 0.5s;
+}
+.card-title {
+    color: #409eff !important;
+    font-size: 15px;
+    text-decoration: underline !important;
+}
+.card-date {
+    color:silver;
+}
 </style>

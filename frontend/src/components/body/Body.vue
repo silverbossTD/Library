@@ -20,9 +20,12 @@
                               alt="Card image cap"
                               style="height: 266.66px"
                             >
+                            <div class="card-description container">
+                                <p>{{ book.description.slice(0, 180) + '...' }}</p>
+                            </div>
                             <div class="card-body">
-                              <h3 class="card-title">{{ book.title }}</h3>
-                              <p class="card-date">{{ book.date | moment("MMMM D, YYYY") }}</p>
+                                <h3 class="card-title">{{ book.title }}</h3>
+                                <p class="card-date">{{ book.date | moment("MMMM D, YYYY") }}</p>
                             </div>
                         </router-link>
                         </div>
@@ -42,9 +45,12 @@
                               alt="Card image cap"
                               style="height: 266.66px"
                             >
+                            <div class="card-description container">
+                                <p>{{ book.description.slice(0, 180) + '...' }}</p>
+                            </div>
                             <div class="card-body">
-                              <h3 class="card-title">{{ book.title }}</h3>
-                              <p class="card-date">{{ book.date | moment("MMMM D, YYYY") }}</p>
+                                <h3 class="card-title">{{ book.title }}</h3>
+                                <p class="card-date">{{ book.date | moment("MMMM D, YYYY") }}</p>
                             </div>
                         </router-link>
                         </div>
@@ -77,9 +83,12 @@
                       alt="Card image cap"
                       style="height: 266.66px"
                     >
+                    <div class="card-description container">
+                        <p>{{ book.description.slice(0, 180) + '...' }}</p>
+                    </div>
                     <div class="card-body">
-                      <h3 class="card-title">{{ book.title }}</h3>
-                      <p class="card-date">{{ book.date | moment("MMMM D, YYYY") }}</p>
+                        <h3 class="card-title">{{ book.title }}</h3>
+                        <p class="card-date">{{ book.date | moment("MMMM D, YYYY") }}</p>
                     </div>
                 </router-link>
                 </div>
@@ -116,32 +125,4 @@ export default {
 
 <style>
 
-.list-card {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.card {
-    width: 200px !important;
-    height: 376.66px !important;
-    margin: auto;
-    border: none;
-    transition: 0.2s;
-}
-.card-img-top {
-    transition: 0.2s;
-}
-
-.card-img-top:hover {
-    box-shadow: 5px 10px 20px #c6c6c6;
-}
-.card-title {
-    color: #409eff !important;
-    font-size: 15px;
-    text-decoration: underline !important;
-}
-
-.card-date {
-    color:silver;
-}
 </style>

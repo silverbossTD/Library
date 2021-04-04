@@ -162,7 +162,7 @@ input {
     width:100%;
     border:none;
     border-bottom:1px solid #757575;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.5);
     color: white;
 }
 input:focus{ outline:none; }

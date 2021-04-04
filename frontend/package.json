@@ -10,7 +10,10 @@
   "dependencies": {
     "@smartweb/vue-flash-message": "^0.6.10",
     "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
     "core-js": "^3.6.5",
+    "jquery": "^3.6.0",
+    "popper.js": "^1.16.1",
     "vue": "^2.6.11",
     "vue-cookies": "^1.7.4",
     "vue-flash-message": "^0.7.2",

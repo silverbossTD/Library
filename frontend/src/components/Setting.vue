@@ -47,4 +47,7 @@ export default {
     background-size: cover;
     height: 650px;
 }
+.spinner-btn {
+    width: 150px;
+}
 </style>

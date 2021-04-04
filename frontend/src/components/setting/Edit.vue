@@ -36,7 +36,10 @@
                     <textarea rows="8" cols="80" class="form-control" style="border:none; outline:none" v-model="book.description"></textarea>
                 </div>
                 <hr />
-                <button class="btn btn-primary cus-btn-primary mb-3" @click="editBook">Edit Book</button>
+                <button class="btn btn-primary cus-btn-primary mb-3 spinner-btn" @click="editBook">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-if="spinner"></span>
+                    Edit Book
+                </button>
             </div>
         </div>
         <Preloader v-if="!book"/>
@@ -54,6 +57,7 @@ export default {
     data() {
         return {
             logged: '',
+            spinner: false,
             bookId: this.$route.params.id,
             book: '',
             isCorrect: false
@@ -75,10 +79,12 @@ export default {
         },
         async editBook() {
             if (this.isCorrect) {
+                this.spinner = true;
                 const userId = this.$cookies.get('userId');
                 const data = await SettingController.editBook(userId, this.bookId, this.book.title, this.book.author, this.book.description);
                 this.$snotify.success(data.data);
-                await this.getBook();
+                this.spinner = false;
+                this.getBook();
             }
         }
     },

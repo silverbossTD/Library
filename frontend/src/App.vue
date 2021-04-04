@@ -34,16 +34,5 @@ body {
     background-color: #5d9ddd !important;
     border-color: #59a8f7 !important;
 }
-
-.flash__wrapper {
-    position: fixed;
-    bottom: 0px;
-    right: 10px;
-    z-index:99;
-    transition: 0.2s;
-}
-.flash__message {
-    width: 300px;
-}
-
+@import'~bootstrap/dist/css/bootstrap.css';
 </style>

@@ -21,6 +21,7 @@ import EditBook from './components/setting/Edit'
 Vue.use(VueRouter);
 
 export const router = new VueRouter({
+    mode: 'history',
     routes: [
         {path: '/', component: Home},
         {path: '/books', component: Books},
