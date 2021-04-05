@@ -25,7 +25,7 @@ export const router = new VueRouter({
     routes: [
         {path: '/', component: Home},
         {path: '/books', component: Books},
-        {path: '/signin', component: Login},
+        {path: '/signin', component: Login, name: 'signin'},
         {path: '/auth/verify/:id', component: Verify},
         {path: '/informationbook/:id', component: Information},
 
@@ -33,7 +33,7 @@ export const router = new VueRouter({
             path: '/setting',
             component: Setting,
             children: [
-                {path: '/setting/profile', component: Profile},
+                {path: '/setting/profile', component: Profile, name: 'settingProfile'},
                 {path: '/setting/upload', component: Upload},
                 {path: '/setting/yourbooks', component: YouBooks},
                 {path: '/setting/editbook/:id', component: EditBook},

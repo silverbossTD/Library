@@ -32,6 +32,7 @@ export default {
             const userId = this.$cookies.get('userId');
             const data = await AuthController.checkCookie(userId);
             this.user = data.data;
+            if (!this.user) this.$router.push({ name: 'signin'});
         }
     },
     mounted() {

@@ -5,14 +5,15 @@
         <section class="text-center headerContainer p-5">
             <div class="container" style="padding-top: 80px">
                 <div class="row">
-                    <div class="col" id="loginForm">
+                    <form class="col" id="loginForm" @submit.prevent="loginUser()">
                         <h1>Login</h1>
                         <div class="form-group">
                             <div class="group">
                                 <input
                                     type="text"
                                     required
-                                    v-model="login.email">
+                                    v-model="login.email"
+                                />
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Email</label>
@@ -21,22 +22,24 @@
                                 <input
                                     type="password"
                                     required
-                                    v-model="login.password">
+                                    v-model="login.password"
+                                />
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Password</label>
                             </div>
-                            <button class="btn btn-primary cus-btn-primary" style="font-size: 20px !important; width: 100%" @click="loginUser">Login</button>
+                            <button type="submit" class="btn btn-primary cus-btn-primary" style="font-size: 20px !important; width: 100%">Login</button>
                         </div>
-                    </div>
-                    <div class="col" id="RegisterForm">
+                    </form>
+                    <form class="col" id="RegisterForm" @submit.prevent="registerUser()">
                         <h1>Register</h1>
                         <div class="form-group">
                             <div class="group">
                                 <input
                                     type="text"
                                     required
-                                    v-model="register.username">
+                                    v-model="register.username"
+                                />
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Username</label>
@@ -45,7 +48,8 @@
                                 <input
                                     type="text"
                                     required
-                                    v-model="register.email">
+                                    v-model="register.email"
+                                />
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Email</label>
@@ -54,7 +58,8 @@
                                 <input
                                     type="password"
                                     required
-                                    v-model="register.password">
+                                    v-model="register.password"
+                                />
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Password</label>
@@ -63,14 +68,15 @@
                                 <input
                                     type="password"
                                     required
-                                    v-model="register.repeatPassword">
+                                    v-model="register.repeatPassword"
+                                />
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Repeat Password</label>
                             </div>
-                            <button class="btn btn-primary cus-btn-primary" style="font-size: 20px !important; width: 100%" @click="registerUser">Register</button>
+                            <button type="submit" class="btn btn-primary cus-btn-primary" style="font-size: 20px !important; width: 100%">Register</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </section>
@@ -106,7 +112,15 @@ export default {
             }
         }
     },
+    mounted() {
+        this.cookie();
+    },
     methods: {
+        async cookie() {
+            const userId = this.$cookies.get('userId');
+            const data = await AuthController.checkCookie(userId);
+            if (data.data) this.$router.push({ name: 'settingProfile'});
+        },
         async loginUser() {
             if (this.login.email == '' ||
                 this.login.password == ''
