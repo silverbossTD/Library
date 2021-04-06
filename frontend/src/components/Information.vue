@@ -142,6 +142,7 @@ export default {
             };
         },
         async pinBook() {
+            this.$snotify.success('Successful book pinning')
             const books = JSON.parse(localStorage.getItem("Books"));
             if (!books.find(x => x.id === this.book.id)) {
                 books.unshift({'id': this.book.id, 'name': this.book.title, 'page': this.currentPage});

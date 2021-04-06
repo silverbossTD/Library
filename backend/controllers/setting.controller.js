@@ -10,7 +10,7 @@ imgur.setClientID(myClientID);
 class SettingController {
     async editProfile(req, res, next) {
         User.updateOne({ id: req.body.id }, {description: req.body.description})
-        .then(() => res.send('Edited profile success'));
+        .then(() => res.send('Profile has been edited successfully'));
     }
     async updateAvatar(req, res, next) {
         const file = req.files.file;
@@ -20,7 +20,7 @@ class SettingController {
         await file.mv(uploadDir + filename);
         await imgur.upload(uploadDir + filename, function(err, respone){
             User.updateOne({ id: req.body.id }, {avatar: `${respone.data.link}`})
-            .then(() => res.send('Updated avatar success'));
+            .then(() => res.send('Successful avatar update'));
         });
     }
     async uploadBook(req, res, next) {
@@ -43,7 +43,7 @@ class SettingController {
                 userId:         req.body.id
             });
             newBook.save()
-            .then(() => res.send('Upload book success'))
+            .then(() => res.send('Successful upload of the book'))
         });
     }
     async getYourBooks(req, res, next) {
@@ -67,7 +67,7 @@ class SettingController {
             return;
         }
         Book.updateOne({ id: req.params.id }, {title: req.body.title, author: req.body.author, description: req.body.description})
-        .then(() => res.send('Edited book success'));
+        .then(() => res.send('Has successfully edited the book'));
     }
 }
 

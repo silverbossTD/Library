@@ -22,7 +22,7 @@ export default {
         Footer
     },
     mounted() {
-        document.title = `SilverLibrary`;
+        document.title = `SilverLibrary - books`;
     }
 }
 

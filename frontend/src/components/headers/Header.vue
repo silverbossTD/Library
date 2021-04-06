@@ -19,7 +19,7 @@
             <div class="form-inline my-2 my-lg-0">
               <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item dropdown">
-                    <a href="#pinBooks" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @click="getPinBooks()">Books</a>
+                    <a href="#pinBooks" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @click="getPinBooks()">Pin Books</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: 250px;height:200px;overflow:auto">
                         <div
                             v-for="(book, index) in pinBooks"
@@ -32,8 +32,8 @@
                             {{ book.name }}
                         </router-link>
                         </div>
-                        <div class="container" v-if="!pinBooks">
-                            <h3>No Books</h3>
+                        <div class="container" v-if="!pinBooks.length">
+                            <h3 style="text-align:center">No Books</h3>
                         </div>
                     </div>
                 </li>
