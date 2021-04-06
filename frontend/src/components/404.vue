@@ -25,6 +25,9 @@ export default {
         Preloader,
         Section,
         Footer
+    },
+    mounted() {
+        document.title = `SilverLibrary`;
     }
 }
 </script>

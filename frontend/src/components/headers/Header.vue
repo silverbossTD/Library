@@ -18,6 +18,25 @@
             </ul>
             <div class="form-inline my-2 my-lg-0">
               <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item dropdown">
+                    <a href="#pinBooks" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @click="getPinBooks()">Books</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: 250px;height:200px;overflow:auto">
+                        <div
+                            v-for="(book, index) in pinBooks"
+                            v-bind:item="book"
+                            v-bind:index="index"
+                            v-bind:key="book.id"
+                            class="container"
+                        >
+                        <router-link :to="'/informationbook/' + book.id">
+                            {{ book.name }}
+                        </router-link>
+                        </div>
+                        <div class="container" v-if="!pinBooks">
+                            <h3>No Books</h3>
+                        </div>
+                    </div>
+                </li>
                 <li class="nav-item" v-if="!logged">
                     <router-link to="/signin" class="nav-link">Sign in</router-link>
                 </li>
@@ -45,7 +64,8 @@ export default {
     name: 'header',
     data() {
         return {
-            logged: ''
+            logged: '',
+            pinBooks: ''
         }
     },
     methods: {
@@ -59,6 +79,9 @@ export default {
             this.cookie();
             this.$snotify.info('Successfully logged out');
             this.$router.go(this.$router.currentRoute);
+        },
+        async getPinBooks() {
+            this.pinBooks = JSON.parse(localStorage.getItem("Books"));
         }
     },
     mounted() {

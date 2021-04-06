@@ -20,6 +20,9 @@ export default {
         Section,
         Body,
         Footer
+    },
+    mounted() {
+        document.title = `SilverLibrary`;
     }
 }
 

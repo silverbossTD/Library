@@ -10,10 +10,15 @@
 import Header from './components/headers/Header';
 
 export default {
-  name: 'App',
-  components: {
-      Header
-  }
+    name: 'App',
+    components: {
+        Header
+    },
+    mounted() {
+        if (!localStorage.getItem("Books")) {
+            localStorage.setItem("Books", JSON.stringify([]));
+        }
+    }
 }
 </script>
 

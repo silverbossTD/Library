@@ -37,6 +37,7 @@ export default {
     },
     mounted() {
         this.cookie();
+        document.title = `SilverLibrary - setting`;
     }
 }
 </script>

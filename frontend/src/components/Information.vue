@@ -40,15 +40,22 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title d-flex" id="exampleModalLabel">Read Book Online <input type="text" class="form-control ml-2" placeholder="Page" v-model="currentPage" style="width: 100px"> / {{pageCount}} Pages</h5>
+                        <h5 class="modal-title d-flex" id="exampleModalLabel">
+                            Read Book Online
+                            <input type="text" class="form-control ml-2" placeholder="Page" v-model="currentPage" style="width: 100px">
+                             / {{pageCount}} Pages
+                             <button class="btn btn-info ml-3" :title="'Pin this book at page ' + currentPage" @click="pinBook()">
+                                 <ion-icon name="pricetags" :title="'Pin this book at page ' + currentPage"></ion-icon>
+                             </button>
+                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body" style="overflow:auto">
                         <div class="d-flex">
-                            <button type="button" class="btn btn-primary mr-2" @click="currentPage--">Previous</button>
-                            <button type="button" class="btn btn-primary" @click="currentPage++">Next</button>
+                            <button type="button" class="btn btn-secondary mr-2" @click="currentPage--">Previous</button>
+                            <button type="button" class="btn btn-secondary" @click="currentPage++">Next</button>
                         </div>
                         <pdf
                             :src="'data:application/pdf;base64,' + book.text"
@@ -109,9 +116,7 @@ export default {
         async getBook() {
             const data = await BookController.informationBook(this.bookId);
             this.book = data.data[0];
-            if (this.logged) {
-                this.like = this.book.userlike.includes(this.logged.username) ? true : false;
-            }
+            if (this.logged) this.like = this.book.userlike.includes(this.logged.username) ? true : false;
         },
         async addStar() {
             if (!this.logged) {
@@ -135,16 +140,37 @@ export default {
                     await BookController.likeBook(this.bookId, this.book.userlike, this.book.stars);
                 }
             };
+        },
+        async pinBook() {
+            const books = JSON.parse(localStorage.getItem("Books"));
+            if (!books.find(x => x.id === this.book.id)) {
+                books.unshift({'id': this.book.id, 'name': this.book.title, 'page': this.currentPage});
+                try {
+                    localStorage.setItem("Books", JSON.stringify(books));
+                } catch (e) {
+                    books.pop();
+                    localStorage.setItem("Books", JSON.stringify(books));
+                }
+                return;
+            }
+            books.find(x => x.id === this.book.id).page = this.currentPage;
+            localStorage.setItem("Books", JSON.stringify(books));
+        },
+        async getPinPage() {
+            const books = JSON.parse(localStorage.getItem("Books"));
+            if (!books.find(x => x.id === this.book.id)) return;
+            this.currentPage = books.find(x => x.id === this.book.id).page;
         }
     },
     async mounted() {
         await this.cookie();
         await this.getBook();
-        if (this.like) {
-            document.querySelector('.content-heart').classList.toggle('heart-active');
-            document.querySelector('.numb').classList.toggle('heart-active');
-            document.querySelector('.heart').classList.toggle('heart-active');
-        }
+        document.title = `SilverLibrary - ${this.book.title}`;
+        this.getPinPage();
+        if (!this.like) return;
+        document.querySelector('.content-heart').classList.toggle('heart-active');
+        document.querySelector('.numb').classList.toggle('heart-active');
+        document.querySelector('.heart').classList.toggle('heart-active');
     }
 }
 

@@ -114,6 +114,7 @@ export default {
     },
     mounted() {
         this.cookie();
+        document.title = `SilverLibrary - login`;
     },
     methods: {
         async cookie() {

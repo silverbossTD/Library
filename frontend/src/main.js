@@ -1,8 +1,8 @@
 import Vue from 'vue'
+import Vuetify from 'vuetify'
 import 'bootstrap'
 import App from './App.vue'
 
-import FlashMessage from '@smartweb/vue-flash-message'
 import Snotify from 'vue-snotify'
 import VueCookies from 'vue-cookies'
 import VueMoment from 'vue-moment'
@@ -14,7 +14,7 @@ import 'vue-snotify/styles/material.css'
 Vue.config.productionTip = false
 
 Vue.use(VueCookies);
-Vue.use(FlashMessage);
+Vue.use(Vuetify);
 Vue.use(VueMoment);
 Vue.use(Snotify, {
   toast: {

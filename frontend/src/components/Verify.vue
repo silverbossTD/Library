@@ -38,6 +38,7 @@ export default {
     },
     mounted() {
         this.verifyUser();
+        document.title = `SilverLibrary - verify`;
     }
 }
 </script>
