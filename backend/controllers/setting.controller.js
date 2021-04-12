@@ -1,0 +1,74 @@
+const User          = require('../models/User');
+const Book          = require('../models/Book');
+
+const imgur         = require('imgur-upload');
+const shortid       = require('shortid');
+const myClientID    = "368efbb07588b30";
+
+imgur.setClientID(myClientID);
+
+class SettingController {
+    async editProfile(req, res, next) {
+        User.updateOne({ id: req.body.id }, {description: req.body.description})
+        .then(() => res.send('Profile has been edited successfully'));
+    }
+    async updateAvatar(req, res, next) {
+        const file = req.files.file;
+        const filename = shortid.generate() + '.png';
+        let uploadDir = './public/images/';
+
+        await file.mv(uploadDir + filename);
+        await imgur.upload(uploadDir + filename, function(err, respone){
+            User.updateOne({ id: req.body.id }, {avatar: `${respone.data.link}`})
+            .then(() => res.send('Successful avatar update'));
+        });
+    }
+    async uploadBook(req, res, next) {
+        const file = req.files.file;
+        const filename = shortid.generate() + '.png';
+        const uploadDir = './public/images/';
+
+        const filePdf = new Buffer.from(req.files.pdf.data, 'base64');
+
+        await file.mv(uploadDir + filename);
+        await imgur.upload(uploadDir + filename, function(err, respone){
+            const newBook = new Book({
+                id:             shortid.generate(),
+                image:          `${respone.data.link}`,
+                title:          req.body.title,
+                author:         req.body.author,
+                description:    req.body.description,
+                date:           new Date().toLocaleDateString(),
+                text:           filePdf,
+                userId:         req.body.id
+            });
+            newBook.save()
+            .then(() => res.send('Successful upload of the book'))
+        });
+    }
+    async getYourBooks(req, res, next) {
+        Book.find({ userId: req.params.id })
+        .then((books) => {
+            books = books.map(book => book = book.toObject());
+            res.send(books);
+        });
+    }
+    async deleteBook(req, res, next) {
+        const book = await Book.find({ id : req.params.id });
+        if (req.body.userId != book[0].userId) {
+            return;
+        }
+        Book.deleteOne( { id : req.params.id } )
+        .then(() => res.send(['success', 'Deleted book successfully']));
+    }
+    async editBook(req, res, next) {
+        const book = await Book.find({ id : req.params.id });
+        if (req.body.userId != book[0].userId) {
+            return;
+        }
+        Book.updateOne({ id: req.params.id }, {title: req.body.title, author: req.body.author, description: req.body.description})
+        .then(() => res.send('Has successfully edited the book'));
+    }
+}
+
+module.exports = new SettingController();
